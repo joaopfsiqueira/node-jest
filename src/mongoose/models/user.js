@@ -6,4 +6,4 @@ const UserSchema = new Schema({
     'created_at': Date
 });
 
-export default mongoose.model('Campaign', UserSchema);
+export default mongoose.model('User', UserSchema);
