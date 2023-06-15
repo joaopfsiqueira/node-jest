@@ -4,11 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": "nodemon ./src/server/index.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@shelf/jest-mongodb": "^4.1.7"
+    "@shelf/jest-mongodb": "^4.1.7",
+    "nodemon": "^2.0.22"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.3.0"
   }
 }
