@@ -1,28 +1,26 @@
 import mongoose from 'mongoose';
 
-const mongoUrl = `${process.env.MONGO_URI}`;
-const db = {
-  async connect() {
-    await mongoose.connect(mongoUrl, { useNewUrlParser: true }, (e) => {
-      if (e) {
-        return e.message;
-      }
-    });
+const mongoUrl =
+  process.env.MONGO_URI || 'mongodb://localhost:27017/test-collection';
+const connection = {
+  connect: () => {
+    mongoose
+      .connect(mongoUrl, { useNewUrlParser: true })
+      .catch((error) => console.log(error));
 
-    mongoose.connection.on('connected', () => {
+    const db = mongoose.connection;
+
+    db.once('open', () => {
       console.log(`mongoose connection open at: ${process.env.MONGO_URI}`);
     });
-
-    mongoose.connection.on('error', (e) => {
-      console.log(`mongoose connection error`);
+    db.on('error', console.error.bind(console, 'connection error:'), (e) => {
       process.exit(1);
     });
-
-    mongoose.connection.on('disconnected', (e) => {
+    db.on('disconnected', (e) => {
       console.log(`mongoose connection disconnected`);
       process.exit(1);
     });
   },
 };
 
-export default db;
+export default connection;
