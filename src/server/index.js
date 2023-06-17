@@ -1,5 +1,5 @@
 import express from 'express';
-import * as dotenv from 'dotenv';
+import dotenv from 'dotenv';
 import connection from '../mongoose/connection.js';
 import userRouter from '../routes/user.routes.js';
 
