@@ -3,6 +3,7 @@ import users from '../mongoose/models/user.js';
 const usersController = {
   createUsers: async (req, res) => {
     const params = req.body;
+    params.createdAt = new Date();
 
     const user = new users(params);
     await user.save();
