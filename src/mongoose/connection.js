@@ -1,7 +1,6 @@
 import mongoose from 'mongoose';
 
-const mongoUrl =
-  process.env.MONGO_URI || 'mongodb://localhost:27017/test-collection';
+const mongoUrl = process.env.MONGO_URI;
 const connection = {
   connect: () => {
     mongoose
